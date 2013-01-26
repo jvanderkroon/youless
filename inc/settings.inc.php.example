@@ -1,0 +1,13 @@
+<?php
+// Rename to settings.inc.php
+
+// DB Settings
+define('DB_HOST', 'localhost');	
+define('DB_NAME', 'youless');
+define('DB_USER', 'root');
+define('DB_PASS', 'password');
+
+// YouLess settings
+define('YL_ADDRESS', '192.168.1.125');
+define('YL_PASSWORD', '');
+?>
