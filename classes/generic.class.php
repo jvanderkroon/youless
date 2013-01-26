@@ -79,6 +79,7 @@ class Generic {
 	
 		if($settings['dualcount'] == 1)
 		{
+			$getDay = strftime('%u', strtotime($checkDate));
 			$beginData = $this->db->getKwhCount($checkDate.' 00:00:00');
 			$endData = $this->db->getKwhCount($checkDate.' 23:59:00');
 			
@@ -90,13 +91,26 @@ class Generic {
 						
 			if($timeStart > $timeEnd)
 			{
-				$kwh = str_replace(",",".", $beginLowData->kwh) - str_replace(",",".", $endLowData->kwh);
-				$kwhLow = (str_replace(",",".", $endData->kwh) - str_replace(",",".", $beginData->kwh)) - $kwh;
+				if($getDay == '6' || $getDay == '7'){
+					$kwh = 0;
+					$kwhLow = str_replace(",",".", $endData->kwh) - str_replace(",",".", $beginData->kwh);					
+				}
+				else{
+					$kwh = str_replace(",",".", $beginLowData->kwh) - str_replace(",",".", $endLowData->kwh);
+					$kwhLow = (str_replace(",",".", $endData->kwh) - str_replace(",",".", $beginData->kwh)) - $kwh;
+				}
 			}
 			else
 			{
-				$kwhLow = str_replace(",",".", $endLowData->kwh) - str_replace(",",".", $beginLowData->kwh);
-				$kwh = (str_replace(",",".", $endData->kwh) - str_replace(",",".", $beginData->kwh)) - $kwhLow;			
+				if($getDay == '6' || $getDay == '7'){
+					$kwh = 0;
+					$kwhLow = str_replace(",",".", $endData->kwh) - str_replace(",",".", $beginData->kwh);
+				}
+				else{
+					$kwhLow = str_replace(",",".", $endLowData->kwh) - str_replace(",",".", $beginLowData->kwh);
+					$kwh = (str_replace(",",".", $endData->kwh) - str_replace(",",".", $beginData->kwh)) - $kwhLow;						
+				}
+		
 			}
 			
 			// Calculate price
