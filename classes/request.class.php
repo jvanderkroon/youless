@@ -26,14 +26,17 @@ class Request {
      * Get live data
      */
 	public function getLiveData() {
-	
+
+        $data['cookie'] = $this->setCurlSession();
 		$curl = new Curl();
 		
 		$curl->addSession( $this->source.'a'.$this->format, $this->opts );
 
 		$result = $curl->exec();
-		$curl->clear();		
-		
+		$curl->clear();
+
+        $this->delCookie();
+        
 		return $result;
 	} 	
 	
