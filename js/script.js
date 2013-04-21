@@ -109,7 +109,7 @@ function createChart(target, date){
 				                text: 'Watt',
 				                margin: 40
 				            };					
-							var rangeSelector = true;
+							var rangeSelector = false;
 							var navScroll = true;
 							var pointInterval = 60 * 1000;
 							var tickInterval = null;
@@ -138,23 +138,6 @@ function createChart(target, date){
 								width: 1, 
 								color: '#c0c0c0'
 							}];										
-							var buttons = [{
-											type: 'hour',
-											count: 1,
-											text: '1u'
-										}, {
-											type: 'hour',
-											count: 12,
-											text: '12u'
-										}, {
-											type: 'day',
-											count: 1,
-											text: 'dag'
-										}, {
-											type: 'week',
-											count: 1,
-											text: 'week'
-										}];
 						}
 						else if(target == 'day')
 						{
@@ -170,19 +153,6 @@ function createChart(target, date){
 							var pointInterval = 60 * 1000;
 							var tickInterval = null;
 							var plotLines = null;											
-							var buttons = [{
-											type: 'hour',
-											count: 1,
-											text: '1u'
-										}, {
-											type: 'hour',
-											count: 12,
-											text: '12u'
-										}, {
-											type: 'day',
-											count: 1,
-											text: 'dag'
-										}];
 						}
 						else if(target == 'month')
 						{
