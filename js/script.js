@@ -54,8 +54,8 @@ function calculate(target, date){
 					// KWH and costs counter
 					if($('input[name=dualcount]:checked').val() == 1)
 					{
-						$('#kwhCounter').html("<span>H: "+jsonData["kwh"]+" kWh<br>L: "+jsonData["kwhLow"]+" kWh</span>");
-						$('#cpkwhCounter').html("<span>H: € "+jsonData["price"]+" <br>L: € "+jsonData["priceLow"]+"</span>");
+						$('#kwhCounter').html("<span>H: "+jsonData["kwh"]+" kWh<br>L: "+jsonData["kwhLow"]+" kWh<br>T: "+jsonData["totalKwh"]+" kWh</span>");
+						$('#cpkwhCounter').html("<span>H: € "+jsonData["price"]+" <br>L: € "+jsonData["priceLow"]+" <br>T: € "+jsonData["totalPrice"]+"</span>");
 					}
 					else
 					{

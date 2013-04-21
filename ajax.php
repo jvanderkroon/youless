@@ -86,7 +86,7 @@ if(isset($_SESSION['user_id']) && $_SESSION['user_id'] != false)
 		$costs = $gen->calculateDayKwhCosts($sqlDate);	
 			
 		// Output data
-		echo '{"ok": 1, "kwh": "'. number_format($costs['kwh'], 2, ',', '') .'", "kwhLow": "'. number_format($costs['kwhLow'], 2, ',', '') .'", "price": "'. number_format($costs['price'], 2, ',', '') .'", "priceLow": "'. number_format($costs['priceLow'], 2, ',', '') .'"}';	
+		echo '{"ok": 1, "kwh": "'. number_format($costs['kwh'], 2, ',', '') .'", "kwhLow": "'. number_format($costs['kwhLow'], 2, ',', '') .'", "totalKwh": "'. number_format($costs['totalKwh'], 2, ',', '') .'", "price": "'. number_format($costs['price'], 2, ',', '') .'", "priceLow": "'. number_format($costs['priceLow'], 2, ',', '') .'", "totalPrice": "'. number_format($costs['totalPrice'], 2, ',', '') .'"}';	
 		
 			
 	}	
@@ -168,7 +168,7 @@ if(isset($_SESSION['user_id']) && $_SESSION['user_id'] != false)
 		$costs = $gen->calculateRangeKwhCosts($start, $end);
 		
 		// Output data
-		echo '{"ok": 1, "kwh": "'. number_format($costs['kwh'], 2, ',', '') .'", "kwhLow": "'. number_format($costs['kwhLow'], 2, ',', '') .'", "price": "'. number_format($costs['price'], 2, ',', '') .'", "priceLow": "'. number_format($costs['priceLow'], 2, ',', '') .'"}';	
+		echo '{"ok": 1, "kwh": "'. number_format($costs['kwh'], 2, ',', '') .'", "kwhLow": "'. number_format($costs['kwhLow'], 2, ',', '') .'", "totalKwh": "'. number_format($costs['totalKwh'], 2, ',', '') .'", "price": "'. number_format($costs['price'], 2, ',', '') .'", "priceLow": "'. number_format($costs['priceLow'], 2, ',', '') .'", "totalPrice": "'. number_format($costs['totalPrice'], 2, ',', '') .'"}';	
 	}	
 	elseif(isset($_GET['a']) && $_GET['a'] == 'month' && isset($_GET['date']))
 	{	
@@ -205,7 +205,7 @@ if(isset($_SESSION['user_id']) && $_SESSION['user_id'] != false)
 		$costs = $gen->calculateRangeKwhCosts($start, $end);
 		
 		// Output data
-		echo '{"ok": 1, "kwh": "'. number_format($costs['kwh'], 2, ',', '') .'", "kwhLow": "'. number_format($costs['kwhLow'], 2, ',', '') .'", "price": "'. number_format($costs['price'], 2, ',', '') .'", "priceLow": "'. number_format($costs['priceLow'], 2, ',', '') .'"}';	
+		echo '{"ok": 1, "kwh": "'. number_format($costs['kwh'], 2, ',', '') .'", "kwhLow": "'. number_format($costs['kwhLow'], 2, ',', '') .'", "totalKwh": "'. number_format($costs['totalKwh'], 2, ',', '') .'", "price": "'. number_format($costs['price'], 2, ',', '') .'", "priceLow": "'. number_format($costs['priceLow'], 2, ',', '') .'", "totalPrice": "'. number_format($costs['totalPrice'], 2, ',', '') .'"}';
 	}	
 	elseif(isset($_GET['a']) && $_GET['a'] == 'saveSettings')
 	{
