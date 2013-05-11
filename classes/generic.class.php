@@ -57,9 +57,11 @@ class Generic {
 			$dailyData = $this->calculateDayKwhCosts($checkDate); 
 			
 			$data['kwh'] += $dailyData['kwh'];
-			$data['kwhLow'] += $dailyData['kwhLow'];	
+			$data['kwhLow'] += $dailyData['kwhLow'];
+			$data['totalKwh'] += $dailyData['kwh'] + $dailyData['kwhLow'];	
 			$data['price'] += $dailyData['price'];
-			$data['priceLow'] += $dailyData['priceLow'];			
+			$data['priceLow'] += $dailyData['priceLow'];
+			$data['totalPrice'] += $dailyData['price'] + $dailyData['priceLow'];			
 			
 			$checkDate = date ("Y-m-d", strtotime ("+1 day", strtotime($checkDate))); 
 			
@@ -141,9 +143,11 @@ class Generic {
 			$data = array();
 			
 			$data['kwh'] = $kwh;
-			$data['kwhLow'] = 0;	
+			$data['kwhLow'] = 0;
+			$data['totalKwh'] = $kwh + $kwhLow;		
 			$data['price'] = $price;
-			$data['priceLow'] = 0;				
+			$data['priceLow'] = 0;
+			$data['totalPrice'] = $price + $priceLow;				
 		}   		
 		
 		return $data;		  
