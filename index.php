@@ -27,7 +27,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<title>YouLess - Energy Monitor</title>
+		<title>YouLess</title>
 		<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
 		<link type="text/css" href="css/style.min.css" rel="stylesheet" />
 		<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
@@ -35,6 +35,16 @@
 		<script type="text/javascript" src="js/highstock.js"></script>
 		<script type="text/javascript" src="js/modules/exporting.js"></script>
 		<script type="text/javascript" src="js/script.min.js"></script>
+		
+		<link rel="apple-touch-icon" href="img/touch-icon-iphone.png" />
+		<link rel="apple-touch-icon" sizes="72x72" href="img/touch-icon-ipad.png" />
+		<link rel="apple-touch-icon" sizes="114x114" href="img/touch-icon-iphone-retina.png" />
+		<link rel="apple-touch-icon" sizes="144x144" href="img/touch-icon-ipad-retina.png" />
+
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<meta content="initial-scale=1.0, width=device-width, user-scalable=no" name="viewport" />
+		<meta name="format-detection" content="telephone=no">
 	</head>
 	<body>
 	
