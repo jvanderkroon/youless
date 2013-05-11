@@ -88,10 +88,12 @@ class Generic {
 			
 			$timeStart = (int)str_replace(":","", $settings['cpkwhlow_start']);
 			$timeEnd = (int)str_replace(":","", $settings['cpkwhlow_end']);
-						
+
+			$holiday = $this->calculateHoliday($checkDate);     	
+									
 			if($timeStart > $timeEnd)
 			{
-				if($getDay == '6' || $getDay == '7'){
+				if($getDay == '6' || $getDay == '7'|| $holiday == true ){
 					$kwh = 0;
 					$kwhLow = str_replace(",",".", $endData->kwh) - str_replace(",",".", $beginData->kwh);					
 				}
@@ -102,7 +104,7 @@ class Generic {
 			}
 			else
 			{
-				if($getDay == '6' || $getDay == '7'){
+				if($getDay == '6' || $getDay == '7'|| $holiday == true ){
 					$kwh = 0;
 					$kwhLow = str_replace(",",".", $endData->kwh) - str_replace(",",".", $beginData->kwh);
 				}
@@ -120,9 +122,11 @@ class Generic {
 			$data = array();
 			
 			$data['kwh'] = $kwh;
-			$data['kwhLow'] = $kwhLow;	
+			$data['kwhLow'] = $kwhLow;
+			$data['totalKwh'] = $kwh + $kwhLow;	
 			$data['price'] = $price;
-			$data['priceLow'] = $priceLow;				
+			$data['priceLow'] = $priceLow;
+			$data['totalPrice'] = $price + $priceLow;							
 		}
 		else
 		{
@@ -143,8 +147,47 @@ class Generic {
 		}   		
 		
 		return $data;		  
-     }     
-     
+     }  
+        
+     /**
+     * Calculate if a specific day is a holiday
+     */	
+     public function calculateHoliday($checkDate){
+		$jaar = date('Y');
+		$feestdag = array();
+	    $a = $jaar % 19;
+	    $b = intval($jaar/100);
+	    $c = $jaar % 100;
+	    $d = intval($b/4);
+	    $e = $b % 4;
+	    $g = intval((8 *  $b + 13) / 25);
+	    $theta = intval((11 * ($b - $d - $g) - 4) / 30);
+	    $phi = intval((7 * $a + $theta + 6) / 11);
+	    $psi = (19 * $a + ($b - $d - $g) + 15 -$phi) % 29;
+	    $i = intval($c / 4);
+	    $k = $c % 4;
+	    $lamda = ((32 + 2 * $e) + 2 * $i - $k - $psi) % 7;
+	    $maand = intval((90 + ($psi + $lamda)) / 25);
+	    $dag = (19 + ($psi + $lamda) + $maand) % 32;    
+	 
+	    $feestdag[] = date('Y-m-d', mktime (1,1,1,1,1,$jaar));           // Nieuwjaarsdag
+	    $feestdag[] = date('Y-m-d',mktime (0,0,0,$maand,$dag-2,$jaar));  // Goede Vrijdag
+	    $feestdag[] = date('Y-m-d',mktime (0,0,0,$maand,$dag,$jaar));    // 1e Paasdag
+	    $feestdag[] = date('Y-m-d',mktime (0,0,0,$maand,$dag+1,$jaar));  // 2e Paasdag
+	    if ($jaar < '2014'){
+			$feestdag[] = date('Y-m-d',mktime (0,0,0,4,30,$jaar));       // Koninginnedag    
+	    }
+	    else{
+			$feestdag[] = date('Y-m-d',mktime (0,0,0,4,26,$jaar));       // Koningsdag    
+	    }
+	    $feestdag[] = date('Y-m-d',mktime (0,0,0,5,5,$jaar));            // Bevrijdingsdag
+	    $feestdag[] = date('Y-m-d',mktime (0,0,0,$maand,$dag+39,$jaar)); // Hemelvaart
+	    $feestdag[] = date('Y-m-d',mktime (0,0,0,$maand,$dag+49,$jaar)); // 1e Pinksterdag
+	    $feestdag[] = date('Y-m-d',mktime (0,0,0,$maand,$dag+50,$jaar)); // 2e Pinksterdag
+	    $feestdag[] = date('Y-m-d',mktime (0,0,0,12,25,$jaar));          // 1e Kerstdag
+	    $feestdag[] = date('Y-m-d',mktime (0,0,0,12,26,$jaar));          // 2e Kerstdag
+	    return in_array($checkDate, $feestdag) ? true : false;
+	}   
 }
 
 ?>
