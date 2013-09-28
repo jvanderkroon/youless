@@ -236,7 +236,7 @@ if(isset($_SESSION['user_id']) && $_SESSION['user_id'] != false)
 	
 		if($password != "" && $confirmpassword != "" && $password == $confirmpassword)
 		{
-			$db->updateLogin(sha1($password));
+			$db->updateLogin($_SESSION['user_id'], sha1($password));
 		}
 		
 		echo '{"ok": 1, "msg":"Instellingen succesvol opgeslagen"}';	

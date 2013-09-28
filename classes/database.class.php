@@ -44,9 +44,9 @@ class Database {
     /**
      * Update login 
      */
-     public function updateLogin($password) {
+     public function updateLogin($id, $password) {
         try {
-            $sth = $this->_db->prepare("UPDATE users SET password= ? WHERE username='admin'");
+            $sth = $this->_db->prepare("UPDATE users SET password= ? WHERE id= $id ");
 
             $sth->bindValue(1, $password, PDO::PARAM_STR);
             $sth->execute();
