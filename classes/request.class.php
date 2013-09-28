@@ -27,7 +27,9 @@ class Request {
      */
 	public function getLiveData() {
 
-        $data['cookie'] = $this->setCurlSession();
+        if(!$data['cookie']) {
+            $data['cookie'] = $this->setCurlSession();
+        }
 		$curl = new Curl();
 		
 		$curl->addSession( $this->source.'a'.$this->format, $this->opts );
@@ -35,7 +37,7 @@ class Request {
 		$result = $curl->exec();
 		$curl->clear();
 
-        $this->delCookie();
+        //$this->delCookie();
         
 		return $result;
 	} 	
